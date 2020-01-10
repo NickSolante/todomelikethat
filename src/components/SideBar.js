@@ -5,13 +5,26 @@ import ListItemText from '@material-ui/core/ListItemText'
 
 function SideBar({ items }) {
   return (
-    <List disablePadding dense>
-      {items.map(({ label, name, ...rest }) => (
-        <ListItem key={name} button {...rest}>
-          <ListItemText>{label}</ListItemText>
-        </ListItem>
-      ))}
-    </List>
+    <div className='sidebar'>
+      <List disablePadding dense>
+        {items.map(({ label, name, items: subItems, ...rest }) => (
+          <ListItem style={{ paddingLeft: 18 }} key={name} button {...rest}>
+            <ListItemText>{label}</ListItemText>
+            {Array.isArray(subItems) ? (
+              <List disablePadding>
+                {subItems.map(subItem => (
+                  <ListItem key={subItem.name} button>
+                    <ListItemText className='sidebar-item-text'>
+                      {subItem.label}
+                    </ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+            ) : null}
+          </ListItem>
+        ))}
+      </List>
+    </div>
   )
 }
 
