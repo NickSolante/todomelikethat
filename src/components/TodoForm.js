@@ -16,11 +16,17 @@ function TodoForm({ addTodo }) {
     setValue('')
   }
 
-  const rowAddition = () => {
+  const addRow = () => {
     setLines(prevState => prevState + 1)
-    console.log(lines)
-    let rowItem = new Array()
-    for (let i = 0; i <= lines; i++) {}
+  }
+
+  const rowAddition = () => {
+    let rowItem = []
+    let rowling = addRow
+    for (let i = 0; i <= lines; i++) {
+      rowItem.push(<AddTodo></AddTodo>)
+    }
+    return rowItem
   }
 
   return (
@@ -39,16 +45,12 @@ function TodoForm({ addTodo }) {
             </Form.Group>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <AddTodo></AddTodo>
-          </Col>
-        </Row>
+        <Row>{rowAddition}</Row>
 
         <Button variant='primary' type='submit'>
           Submit
         </Button>
-        <Button variant='primary' onClick={rowAddition}>
+        <Button variant='primary' onClick={addRow}>
           Add item
         </Button>
       </Form>
