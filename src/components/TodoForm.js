@@ -21,7 +21,7 @@ function TodoForm({ addTodo }) {
   }
 
   const rowAddition = () => {
-    let rowItem = []
+    let rowItem = new Array()
     let rowling = addRow
     for (let i = 0; i <= lines; i++) {
       rowItem.push(<AddTodo></AddTodo>)
